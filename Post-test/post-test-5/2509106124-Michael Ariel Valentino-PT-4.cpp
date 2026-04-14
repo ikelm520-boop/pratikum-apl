@@ -105,6 +105,39 @@ void hapus(Pemain *tim, int *jumlah) {
     cout << "Data berhasil dihapus!\n";
 }
 
+void sortNamaDesc(Pemain *tim, int jumlah){
+    for(int i=0; i<jumlah-1; i++){
+        for(int j=0; j<jumlah-i-1; j++){
+            if((tim+j)->nama < (tim+j+1)->nama){
+                swap(*(tim+j), *(tim+j+1));
+            }
+        }
+    }
+    cout << "Sorting nama (Z-A) berhasil!\n";
+}
+
+void sortTinggiAsc(Pemain *tim, int jumlah){
+    for(int i=0; i<jumlah-1; i++){
+        for(int j=0; j<jumlah-i-1; j++){
+            if((tim+j)->tinggi > (tim+j+1)->tinggi){
+                swap(*(tim+j), *(tim+j+1));
+            }
+        }
+    }
+    cout << "Sorting tinggi (ascending) berhasil!\n";
+}
+
+void sortNomorDesc(Pemain *tim, int jumlah){
+    for(int i=0; i<jumlah-1; i++){
+        for(int j=0; j<jumlah-i-1; j++){
+            if((tim+j)->nomor < (tim+j+1)->nomor){
+                swap(*(tim+j), *(tim+j+1));
+            }
+        }
+    }
+    cout << "Sorting nomor (descending) berhasil!\n";
+}
+
 bool login(User *user) {
     string username, password;
     int kesempatan = 3;
@@ -144,19 +177,25 @@ int main() {
         cout << "2. Lihat Pemain\n";
         cout << "3. Update Pemain\n";
         cout << "4. Hapus Pemain\n";
-        cout << "5. Keluar\n";
+        cout << "5. Sorting Nama (Z-A)\n";
+        cout << "6. Sorting Tinggi (Asc)\n";
+        cout << "7. Sorting Nomor (Desc)\n";
+        cout << "8. Keluar\n";
         cout << "Pilihan : ";
         cin >> pilihan;
 
         switch(pilihan){
-            case 1: create(tim, &jumlah); break;     
+            case 1: create(tim, &jumlah); break;
             case 2: read(tim, jumlah); break;
             case 3: update(tim, jumlah); break;
-            case 4: hapus(tim, &jumlah); break;      
-            case 5: cout << "Program selesai.\n"; break;
+            case 4: hapus(tim, &jumlah); break;
+            case 5: sortNamaDesc(tim, jumlah); break;
+            case 6: sortTinggiAsc(tim, jumlah); break;
+            case 7: sortNomorDesc(tim, jumlah); break;
+            case 8: cout << "Program selesai.\n"; break;
             default: cout << "Pilihan tidak tersedia!\n";
         }
-    } while(pilihan != 5);
+    } while(pilihan != 8);
 
     return 0;
 }
